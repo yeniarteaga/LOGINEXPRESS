@@ -13,17 +13,19 @@ const validar = require('./validar');
 const saltRounds = 10;
 
 app.use(cors({
-  origin: process.env. URLFRONTEND || 'http://localhost:5173',
+  origin: process.env. HOSTFRONTEND || 'http://localhost:5173',
   credentials: true
 }))
 
+const produccion = (process.env.NODE_ENV === 'production')
+
 app.use(session({
-  secret: process.env. SECRETSESSION ||'fjhvbcbcjbcjhcnjcbcnbcvcnvjcvnxczjxzdzxzxcaa',
-  proxy: tprocess.env.NODE_ENV === 'production',
+  secret:'fjhvbcbcjbcjhcnjcbcnbcvcnvjcvnxczjxzdzxzxcaa',
   cookie: {
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'none'
-  }
+    sameSite: 'none',
+    secure: produccion
+  },
+  proxy: produccion
 }))
 
 app.get('/', (req, res) => {
