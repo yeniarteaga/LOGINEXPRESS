@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 // Get the client
 const cors = require('cors')
 const session = require('express-session')
@@ -13,14 +13,14 @@ const validar = require('./validar');
 const saltRounds = 10;
 
 app.use(cors({
-  origin: process.env. HOSTFRONTEND || 'http://localhost:5173',
+  origin: process.env.HOSTFRONTEND || 'http://localhost:5173',
   credentials: true
 }))
 
 const produccion = (process.env.NODE_ENV === 'production')
 
 app.use(session({
-  secret:'fjhvbcbcjbcjhcnjcbcnbcvcnvjcvnxczjxzdzxzxcaa',
+  secret: 'fjhvbcbcjbcjhcnjcbcnbcvcnvjcvnxczjxzdzxzxcaa',
   cookie: {
     sameSite: 'none',
     secure: produccion
