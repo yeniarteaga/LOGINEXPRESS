@@ -22,7 +22,7 @@ const produccion = (process.env.NODE_ENV === 'production')
 app.use(session({
   secret: 'fjhvbcbcjbcjhcnjcbcnbcvcnvjcvnxczjxzdzxzxcaa',
   cookie: {
-    sameSite: 'none',
+    sameSite: 'lax',
     secure: produccion
   },
   proxy: produccion
